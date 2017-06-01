@@ -21,6 +21,7 @@ describe('GoogleAnalytics api', () => {
         let insertNodeSpy;
         let scriptEl;
         const gaOptions = {
+            trackingId: '123',
         };
 
         beforeEach(() => {
@@ -37,13 +38,13 @@ describe('GoogleAnalytics api', () => {
 
         it('should create a script element that starts asynchronously downloading the analytics and ' +
         'initialise a global ga function', () => {
-            ga.init('123', gaOptions);
+            ga.init(gaOptions);
             expect(document.createElement).to.have.been.calledWith('script');
             expect(document.getElementsByTagName).to.have.been.calledWith('script');
             expect(insertNodeSpy).to.have.been.calledWith(gaScriptEl, scriptEl);
             expect(gaScriptEl.async).to.equal(1);
             expect(gaScriptEl.src).to.equal('https://www.google-analytics.com/analytics.js');
-            expect(window.ga).to.have.been.calledWith('create', '123', gaOptions);
+            expect(window.ga).to.have.been.calledWith('create', gaOptions);
         });
     });
 

@@ -13,9 +13,9 @@ const loadGASDK = () => {
 };
 /* eslint-enable */
 
-const init = (trackingID, options) => {
+const init = (options) => {
     loadGASDK();
-    window.ga('create', trackingID, options);
+    window.ga('create', options);
 };
 
 const track = (options) => {
